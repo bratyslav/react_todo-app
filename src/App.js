@@ -18,7 +18,8 @@ class App extends React.Component {
 
   componentDidMount() {
     this.setState({ filteredBy: 'all' })
-    // потому что на момент рендеринга filteredby еще 'undefined'
+    // если устанавливать значение в конструкторе,
+    // то на момент рендеринга filteredBy еще 'undefined'
   }
 
   addTodo = (event) => {
