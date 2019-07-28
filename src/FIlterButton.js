@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const FilterButton = ({ attribute, setFilterAttribute, filteredBy }) => (
   <li
@@ -12,5 +13,11 @@ const FilterButton = ({ attribute, setFilterAttribute, filteredBy }) => (
     </a>
   </li>
 );
+
+FilterButton.propTypes = {
+  attribute: PropTypes.string.isRequired,
+  setFilterAttribute: PropTypes.func.isRequired,
+  filteredBy: PropTypes.string
+};
 
 export default FilterButton;

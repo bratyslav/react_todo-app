@@ -1,5 +1,6 @@
 import React from 'react';
 import FilterButton from './FIlterButton';
+import PropTypes from 'prop-types';
 
 const TodoFooter = ({
   todos,
@@ -50,6 +51,13 @@ const TodoFooter = ({
       </button> 
     </footer>
   );
+};
+
+TodoFooter.propTypes = {
+  todos: PropTypes.array.isRequired,
+  setFilterAttribute: PropTypes.func.isRequired,
+  deleteAllCompleted: PropTypes.func.isRequired,
+  filteredBy: PropTypes.string
 };
 
 export default TodoFooter;

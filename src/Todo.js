@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Todo = ({ todo, deleteTodo, setTodoAsCompleted }) => (
   <li>
@@ -24,5 +25,11 @@ const Todo = ({ todo, deleteTodo, setTodoAsCompleted }) => (
     </div>
   </li>
 );
+
+Todo.propTypes = {
+  todo: PropTypes.object.isRequired,
+  deleteTodo: PropTypes.func.isRequired,
+  setTodoAsCompleted: PropTypes.func.isRequired
+};
 
 export default Todo;

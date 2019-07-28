@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const TodoHeader = ({ addTodo, inputValue }) => (
   <header className="header">
@@ -13,5 +14,10 @@ const TodoHeader = ({ addTodo, inputValue }) => (
     />
   </header>
 );
+
+TodoHeader.propTypes = {
+  addTodo: PropTypes.func.isRequired,
+  inputValue: PropTypes.string.isRequired
+};
 
 export default TodoHeader;

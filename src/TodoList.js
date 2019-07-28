@@ -1,5 +1,6 @@
 import React from 'react';
 import Todo from './Todo';
+import PropTypes from 'prop-types';
 
 const TodoList = ({
   todos,
@@ -32,5 +33,14 @@ const TodoList = ({
     </ul>
   </section>
 );
+
+TodoList.propTypes = {
+  todos: PropTypes.array.isRequired,
+  setAllAsCompleted: PropTypes.func.isRequired,
+  allCompleted: PropTypes.bool.isRequired,
+  filterTodoList: PropTypes.func.isRequired,
+  deleteTodo: PropTypes.func.isRequired,
+  setTodoAsCompleted: PropTypes.func.isRequired
+};
 
 export default TodoList;
