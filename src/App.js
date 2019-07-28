@@ -11,10 +11,15 @@ class App extends React.Component {
     this.state = {
       todos: [],
       inputValue: '',
-      fiteredBy: 'all',
+      fiteredBy: '',
       allCompleted: false
     };
   };
+
+  componentDidMount() {
+    this.setState({ filteredBy: 'all' })
+    // потому что на момент рендеринга filteredby еще 'undefined'
+  }
 
   addTodo = (event) => {
     event.persist();
