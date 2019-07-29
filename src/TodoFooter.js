@@ -1,6 +1,7 @@
 import React from 'react';
 import FilterButton from './FIlterButton';
 import PropTypes from 'prop-types';
+const classNames = require('classnames');
 
 const TodoFooter = ({
   todos,
@@ -10,9 +11,19 @@ const TodoFooter = ({
 }) => {
   const activeTodosCount = todos.filter(todo => !todo.completed).length;
 
+  const footerClass = classNames({
+    'no-visible': todos.length === 0,
+    'footer': todos.length !== 0
+  });
+
+  const deleteAllCompletedButtonClass = classNames({
+    'clear-completed': todos.find(todo => todo.completed),
+    'no-visible': !todos.find(todo => todo.completed)
+  });
+
   return (
     <footer
-      className={todos.length === 0 ? "no-visible" : "footer"}
+      className={footerClass}
     >
       <span className="todo-count">
         {activeTodosCount === 0
@@ -41,10 +52,7 @@ const TodoFooter = ({
 
       <button
         type="button"
-        className={todos.find(todo => todo.completed)
-          ? "clear-completed"
-          : "no-visible"
-        }
+        className={deleteAllCompletedButtonClass}
         onClick={deleteAllCompleted}  
       >
         Clear completed
