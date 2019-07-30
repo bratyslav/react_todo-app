@@ -8,7 +8,7 @@ const TodoList = ({
   allCompleted,
   filterTodoList,
   deleteTodo,
-  setTodoAsCompleted
+  toggleTodoComplete
 }) => (
   <section className="main">
     <input
@@ -26,7 +26,7 @@ const TodoList = ({
         <Todo
           todo={todo}
           deleteTodo={deleteTodo}
-          setTodoAsCompleted={setTodoAsCompleted}
+          toggleTodoComplete={toggleTodoComplete}
           key={todo.title}
         />
       ))}
@@ -40,7 +40,7 @@ TodoList.propTypes = {
   allCompleted: PropTypes.bool.isRequired,
   filterTodoList: PropTypes.func.isRequired,
   deleteTodo: PropTypes.func.isRequired,
-  setTodoAsCompleted: PropTypes.func.isRequired
+  toggleTodoComplete: PropTypes.func.isRequired
 };
 
 export default TodoList;

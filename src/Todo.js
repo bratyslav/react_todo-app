@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 const classNames = require('classnames');
 
-const Todo = ({ todo, deleteTodo, setTodoAsCompleted }) => {
+const Todo = ({ todo, deleteTodo, toggleTodoComplete }) => {
   const todoClass = classNames({
     'completed': todo.completed,
     '': !todo.completed
@@ -15,8 +15,7 @@ const Todo = ({ todo, deleteTodo, setTodoAsCompleted }) => {
           type="checkbox"
           className="toggle"
           id="todo-1"
-          onClick={() => setTodoAsCompleted(todo.title)}
-          disabled={todo.completed ? "disabled" : ""}
+          onClick={() => toggleTodoComplete(todo.title)}
           checked={todo.completed}
         />
 
@@ -37,7 +36,7 @@ const Todo = ({ todo, deleteTodo, setTodoAsCompleted }) => {
 Todo.propTypes = {
   todo: PropTypes.object.isRequired,
   deleteTodo: PropTypes.func.isRequired,
-  setTodoAsCompleted: PropTypes.func.isRequired
+  toggleTodoComplete: PropTypes.func.isRequired
 };
 
 export default Todo;
