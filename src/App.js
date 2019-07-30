@@ -59,7 +59,6 @@ class App extends React.Component {
 
   toggleTodoComplete = (title) => {
     const { todos, allCompleted } = this.state;
-    console.log(todos.find(todo => todo.title === title).completed)
 
     this.setState((prevState) => ({
       todos: prevState.todos.map(todo => (
@@ -80,11 +79,23 @@ class App extends React.Component {
     }; // то теперь не все сделано - сбросить 'select all' input
   };
 
-  setAllAsCompleted = () => {
-    if (this.state.todos.length !== 0) { // можно отметить все, если что-то есть
+  toggleAllComplete = () => {
+    const { todos, allCompleted } = this.state;
+    console.log(allCompleted)
+
+    if (todos.length !== 0 && !allCompleted)
+    { // если что-то есть и 'select all' input неактивен
       this.setState((prevState) => ({
         todos: prevState.todos.map(todo => ({ ...todo, completed: true })),
         allCompleted: true
+      }));
+    };
+
+    if (allCompleted) {
+      console.log('I\'m here')
+      this.setState((prevState) => ({
+        todos: prevState.todos.map(todo => ({ ...todo, completed: false })),
+        allCompleted: false
       }));
     };
   };
@@ -130,7 +141,7 @@ class App extends React.Component {
 
         <TodoList
           todos={todos}
-          setAllAsCompleted={this.setAllAsCompleted}
+          toggleAllComplete={this.toggleAllComplete}
           allCompleted={allCompleted}
           filterTodoList={this.filterTodoList}
           deleteTodo={this.deleteTodo}

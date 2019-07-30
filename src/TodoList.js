@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 const TodoList = ({
   todos,
-  setAllAsCompleted,
+  toggleAllComplete,
   allCompleted,
   filterTodoList,
   deleteTodo,
@@ -15,9 +15,8 @@ const TodoList = ({
       type="checkbox"
       id="toggle-all"
       className="toggle-all"
-      onClick={setAllAsCompleted}
+      onClick={toggleAllComplete}
       checked={allCompleted}
-      disabled={allCompleted}
     />
     <label htmlFor="toggle-all">Mark all as complete</label>
 
@@ -36,7 +35,7 @@ const TodoList = ({
 
 TodoList.propTypes = {
   todos: PropTypes.array.isRequired,
-  setAllAsCompleted: PropTypes.func.isRequired,
+  toggleAllComplete: PropTypes.func.isRequired,
   allCompleted: PropTypes.bool.isRequired,
   filterTodoList: PropTypes.func.isRequired,
   deleteTodo: PropTypes.func.isRequired,
