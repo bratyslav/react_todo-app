@@ -4,8 +4,7 @@ const classNames = require('classnames');
 
 const Todo = ({ todo, deleteTodo, toggleTodoComplete }) => {
   const todoClass = classNames({
-    'completed': todo.completed,
-    '': !todo.completed
+    'completed': todo.completed
   });
 
   return (
@@ -14,12 +13,12 @@ const Todo = ({ todo, deleteTodo, toggleTodoComplete }) => {
         <input
           type="checkbox"
           className="toggle"
-          id="todo-1"
+          id={`todo-${todo.title}`}
           onClick={() => toggleTodoComplete(todo.title)}
           checked={todo.completed}
         />
 
-        <label htmlFor="todo-1" className={todoClass}>
+        <label htmlFor={`todo-${todo.title}`} className={todoClass}>
           {todo.title}
         </label>
 

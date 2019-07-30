@@ -33,21 +33,16 @@ const TodoFooter = ({
       </span>
 
       <ul className="filters">
-        <FilterButton
-          setFilterAttribute={setFilterAttribute}
-          filteredBy={filteredBy}
-          attribute={'all'}
-        />
-        <FilterButton
-          setFilterAttribute={setFilterAttribute}
-          filteredBy={filteredBy}
-          attribute={'active'}
-        />
-        <FilterButton
-          setFilterAttribute={setFilterAttribute}
-          filteredBy={filteredBy}
-          attribute={'completed'}
-        />
+        {
+          ['all', 'active', 'completed'].map(attribute => (
+            <FilterButton
+              setFilterAttribute={setFilterAttribute}
+              filteredBy={filteredBy}
+              attribute={attribute}
+              key={attribute}
+            />
+          ))
+        }
       </ul>
 
       <button

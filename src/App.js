@@ -11,16 +11,10 @@ class App extends React.Component {
     this.state = {
       todos: [],
       inputValue: '',
-      fiteredBy: '',
+      fiteredBy: 'all',
       allCompleted: false
     };
   };
-
-  componentDidMount() {
-    this.setState({ filteredBy: 'all' })
-    // если устанавливать значение в конструкторе,
-    // то на момент рендеринга filteredBy еще 'undefined'
-  }
 
   addTodo = (event) => {
     event.persist();
@@ -68,7 +62,8 @@ class App extends React.Component {
       ))
     }));
 
-    if (todos.filter(todo => !todo.completed).length === 1)
+    if (todos.find(todo => !todo.completed) // если такое есть (?)
+      && todos.filter(todo => !todo.completed).length === 1)
     { // если все будет отмечено
       this.setState({ allCompleted: true }); // активировать 'select all' input
     };
@@ -81,7 +76,6 @@ class App extends React.Component {
 
   toggleAllComplete = () => {
     const { todos, allCompleted } = this.state;
-    console.log(allCompleted)
 
     if (todos.length !== 0 && !allCompleted)
     { // если что-то есть и 'select all' input неактивен
@@ -92,7 +86,6 @@ class App extends React.Component {
     };
 
     if (allCompleted) {
-      console.log('I\'m here')
       this.setState((prevState) => ({
         todos: prevState.todos.map(todo => ({ ...todo, completed: false })),
         allCompleted: false
