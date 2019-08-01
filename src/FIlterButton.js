@@ -4,8 +4,7 @@ const classNames = require('classnames');
 
 const FilterButton = ({ attribute, setFilterAttribute, filteredBy }) => {
   const fiterButtonClass = classNames({
-    'filter-button-checked': filteredBy === attribute,
-    '': filteredBy !== attribute
+    'filter-button-checked': filteredBy === attribute
   });
 
   return (
