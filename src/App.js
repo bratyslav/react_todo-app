@@ -10,35 +10,39 @@ class App extends React.Component {
 
     this.state = {
       todos: [],
-      inputValue: '',
       fiteredBy: 'all',
-      allCompleted: false
+      allCompleted: false,
+      inputValue: ''
     };
   };
 
-  addTodo = (event) => {
-    event.persist();
-    const { value } = event.target;
+  setInputValue = (event) => {
+    this.setState({ inputValue: event.target.value });
+  };
 
-    if (event.keyCode === ENTER && value.length !== 0) { // по нажатию enter
-      if (!this.state.todos.find(todo => todo.title === value))
+  addTodo = (event) => {
+    event.preventDefault();
+    const { inputValue } = this.state;
+
+    if (inputValue !== 0) {
+
+      if (!this.state.todos.find(todo => todo.title === inputValue))
       { // если такого todo нет
         this.setState((prevState) => ({
-          todos: [ // записать в массив
+          todos: [                 // записать todo в массив
             ...prevState.todos,
-            { title: value, completed: false }
+            { title: inputValue, completed: false }
           ], 
-          inputValue: '', // обнулить input
-          allCompleted: false // теперь не все сделано
+          inputValue: '',          // обнулить input
+          allCompleted: false      // теперь не все сделано
         }));
       } else {
         this.setState({
           inputValue: '' // если такой todo есть: обнулить input, но не записывать
         })
-      }
-    } else { // иначе записывать вводимый текст
-      this.setState({ inputValue: value });
-    }; 
+      };
+
+    };
   };
 
   deleteTodo = (title) => {
@@ -123,12 +127,13 @@ class App extends React.Component {
   };
 
   render() {
-    const { todos, inputValue, allCompleted, filteredBy } = this.state;
+    const { todos, allCompleted, filteredBy, inputValue } = this.state;
 
     return (
       <section className="todoapp">
         <TodoHeader
           addTodo={this.addTodo}
+          setInputValue={this.setInputValue}
           inputValue={inputValue}
         />
 
